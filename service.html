@@ -12,235 +12,598 @@
     box-sizing: border-box;
   }
 
+  :root {
+    --bg-dark: #0a0a0a;
+    --bg-darker: #050505;
+    --bg-glass: rgba(255, 255, 255, 0.02);
+    --bg-glass-hover: rgba(255, 255, 255, 0.05);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --border-glass-hover: rgba(255, 255, 255, 0.2);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --accent-purple: #8b5cf6;
+    --accent-blue: #06b6d4;
+    --accent-green: #10b981;
+    --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+    --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --blur-sm: blur(8px);
+    --blur-md: blur(16px);
+    --blur-lg: blur(24px);
+  }
+
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-primary);
+    background: var(--bg-dark);
     min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    background: transparent;
+    min-height: 100vh;
+    position: relative;
   }
 
+  /* Glassmorphic Header */
   header {
-    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-    color: white;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
     text-align: center;
-    padding: 3rem 2rem;
+    padding: 4rem 2rem 3rem;
     position: relative;
     overflow: hidden;
+    margin: 2rem;
+    border-radius: 24px;
   }
 
   header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.1;
+    border-radius: 24px;
+  }
+
+  header::after {
     content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: shine 3s infinite linear;
+    background: conic-gradient(from 0deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    animation: rotate 20s linear infinite;
+    border-radius: 50%;
   }
 
-  @keyframes shine {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    position: relative;
-    z-index: 2;
-  }
-
-  .main-content {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    min-height: 70vh;
-  }
-
-  nav {
-    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 2rem 0;
-    border-right: 1px solid #dee2e6;
-  }
-
-  nav ul {
-    list-style: none;
-  }
-
-  nav li {
-    margin: 0.5rem 0;
-  }
-
-  nav a {
-    display: block;
-    padding: 1rem 2rem;
-    color: #2c3e50;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border-radius: 0 25px 25px 0;
-    margin-right: 1rem;
-  }
-
-  nav a:hover, nav a.active {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-    transform: translateX(10px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-  }
-
-  article {
-    padding: 3rem;
-    background: white;
-  }
-
-  .services-intro {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .services-intro h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #3498db, #9b59b6);
+    position: relative;
+    z-index: 3;
+    letter-spacing: -0.02em;
+    background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .services-intro p {
-    font-size: 1.2rem;
-    color: #666;
+  header p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 3;
     max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* Glassmorphic Navigation */
+  .topnav {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid var(--border-glass);
+    position: sticky;
+    top: 2rem;
+    z-index: 1000;
+    margin: 0 2rem;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+
+  .brand {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: -0.02em;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    background: var(--bg-glass-hover);
+    border-color: var(--border-glass-hover);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    backdrop-filter: var(--blur-sm);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: var(--blur-sm);
+  }
+
+  .nav-toggle:hover {
+    background: var(--bg-glass-hover);
+    border-color: var(--border-glass-hover);
+  }
+
+  .hamburger {
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    display: block;
+    position: relative;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 1px;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hamburger::before { top: -6px; }
+  .hamburger::after { top: 6px; }
+
+  /* Glassmorphic Mobile Drawer */
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: var(--blur-lg);
+    border-right: 1px solid var(--border-glass);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+    padding: 2rem 0;
+  }
+
+  .drawer.open {
+    left: 0;
+  }
+
+  .drawer-header {
+    padding: 0 2rem 2rem;
+    border-bottom: 1px solid var(--border-glass);
+    margin-bottom: 2rem;
+  }
+
+  .drawer-header h3 {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .drawer-header p {
+    color: var(--text-muted);
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+  }
+
+  .drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .drawer ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 3px solid transparent;
+    font-weight: 500;
+    background: transparent;
+  }
+
+  .drawer ul li a:hover,
+  .drawer ul li a.active {
+    background: var(--bg-glass);
+    border-left-color: var(--accent-purple);
+    color: var(--text-primary);
+    backdrop-filter: var(--blur-sm);
+  }
+
+  .drawer-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1500;
+    backdrop-filter: var(--blur-sm);
+  }
+
+  .drawer.open ~ .drawer-backdrop {
+    display: block;
+  }
+
+  /* Main Content */
+  article {
+    padding: 4rem 2rem;
+    background: transparent;
+    min-height: calc(100vh - 200px);
+    max-width: 1200px;
     margin: 0 auto;
   }
 
+  .services-intro {
+    text-align: center;
+    margin-bottom: 6rem;
+  }
+
+  .services-intro h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .services-intro p {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* Glassmorphic Service Cards */
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
   }
 
   .service-card {
-    background: white;
+    background: var(--bg-glass);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid var(--border-glass);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
   }
 
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 20px;
+    z-index: -1;
+  }
+
   .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    border-color: var(--border-glass-hover);
+    background: var(--bg-glass-hover);
+  }
+
+  .service-card:hover::before {
+    opacity: 0.05;
   }
 
   .service-card img {
     width: 100%;
-    height: 200px;
+    height: 240px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
   }
 
   .service-card:hover img {
     transform: scale(1.05);
+    opacity: 1;
   }
 
   .service-content {
     padding: 2rem;
+    position: relative;
+    z-index: 2;
   }
 
   .service-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     display: block;
+    opacity: 0.9;
   }
 
   .service-content h3 {
     font-size: 1.5rem;
-    color: #2c3e50;
+    font-weight: 700;
+    color: var(--text-primary);
     margin-bottom: 1rem;
+    letter-spacing: -0.02em;
   }
 
   .service-content p {
-    color: #666;
-    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-weight: 400;
   }
 
   .service-features {
     list-style: none;
+    display: grid;
+    gap: 1rem;
   }
 
   .service-features li {
-    padding: 0.5rem 0;
-    color: #555;
+    color: var(--text-secondary);
     position: relative;
     padding-left: 2rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .service-card:hover .service-features li {
+    color: var(--text-primary);
   }
 
   .service-features li::before {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #27ae60;
+    color: var(--accent-green);
     font-weight: bold;
+    width: 18px;
+    height: 18px;
+    background: rgba(16, 185, 129, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    border: 1px solid rgba(16, 185, 129, 0.3);
   }
 
+  /* Glassmorphic Stats Section */
   .stats-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 3rem;
-    border-radius: 20px;
-    color: white;
+    background: var(--bg-glass);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid var(--border-glass);
+    padding: 4rem 2rem;
+    border-radius: 24px;
+    color: var(--text-primary);
     text-align: center;
-    margin: 3rem 0;
+    margin: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-secondary);
+    opacity: 0.1;
+    border-radius: 24px;
+  }
+
+  .stats-section h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .stat-item {
+    padding: 2rem 1rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    backdrop-filter: var(--blur-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .stat-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-glass-hover);
+    background: var(--bg-glass-hover);
   }
 
   .stat-item h3 {
-    font-size: 2.5rem;
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    font-weight: 800;
     margin-bottom: 0.5rem;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
+  .stat-item p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* Glassmorphic CTA Section */
   .cta-section {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    padding: 3rem;
-    border-radius: 20px;
+    background: var(--bg-glass);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid var(--border-glass);
+    padding: 4rem 2rem;
+    border-radius: 24px;
     text-align: center;
-    color: white;
-    margin: 3rem 0;
+    color: var(--text-primary);
+    margin: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+    animation: rotate 15s linear infinite;
+    border-radius: 50%;
   }
 
   .cta-section h2 {
-    font-size: 2rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 2;
+    font-weight: 400;
   }
 
   .cta-buttons {
@@ -248,111 +611,106 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
   }
 
   .btn {
     padding: 1rem 2rem;
     border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
+    border-radius: 12px;
+    font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 160px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: var(--gradient-primary);
     color: white;
+    border: 1px solid transparent;
   }
 
   .btn-secondary {
-    background: white;
-    color: #f5576c;
-    border: 2px solid white;
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: var(--blur-sm);
   }
 
   .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
   }
 
+  .btn-primary:hover {
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-glass-hover);
+    border-color: var(--border-glass-hover);
+  }
+
+  /* Glassmorphic Footer */
   footer {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: white;
+    background: var(--bg-glass);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px 24px 0 0;
+    color: var(--text-secondary);
     text-align: center;
-    padding: 2rem;
-    font-size: 1.1rem;
+    padding: 3rem 2rem;
+    font-size: 1rem;
+    margin: 2rem 2rem 0;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.05;
+    border-radius: 24px 24px 0 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .nav-toggle {
+      display: block;
+    }
   }
 
   @media (max-width: 768px) {
     .container {
-      margin: 10px;
-      border-radius: 15px;
-    }
-    
-    .main-content {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-    
-    nav {
-      background: linear-gradient(90deg, #34495e 0%, #2c3e50 100%);
-      padding: 1rem 0;
-      order: 1;
-      border-radius: 0;
-    }
-    
-    nav ul {
-      display: flex;
-      overflow-x: auto;
-      gap: 0.5rem;
-      padding: 0 1rem;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    
-    nav ul::-webkit-scrollbar {
-      display: none;
-    }
-    
-    nav li {
-      flex-shrink: 0;
       margin: 0;
     }
     
-    nav a {
-      padding: 0.8rem 1.2rem;
-      border-radius: 25px;
-      white-space: nowrap;
-      font-size: 0.9rem;
-      background: rgba(255, 255, 255, 0.1);
-      margin: 0 0.25rem;
-    }
-    
-    nav a:hover {
-      transform: none;
-      background: linear-gradient(90deg, #3498db, #2980b9);
-    }
-    
-    article {
-      order: 2;
-      padding: 1.5rem 1rem;
+    .nav-container {
+      padding: 1rem;
     }
     
     header {
-      padding: 1.5rem 1rem;
+      padding: 3rem 1rem 1.5rem;
     }
     
-    header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    header p {
-      font-size: 0.9rem;
+    article {
+      padding: 3rem 1rem;
     }
     
     .services-grid {
@@ -361,47 +719,92 @@
     }
     
     .service-card {
-      padding: 1.5rem 1rem;
+      margin: 0 auto;
+      max-width: 400px;
     }
     
+    .stats-section,
     .cta-section {
-      padding: 1.5rem 1rem;
-      margin: 1.5rem 0;
+      padding: 3rem 1rem;
+      margin: 3rem 0;
     }
     
-    .contact-grid {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-container {
+      padding: 0.75rem;
+    }
+    
+    header {
+      padding: 2rem 1rem 1rem;
+    }
+    
+    article {
+      padding: 2rem 1rem;
+    }
+    
+    .services-intro {
+      margin-bottom: 3rem;
+    }
+    
+    .service-content {
+      padding: 1.5rem;
+    }
+    
+    .stats-grid {
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .container {
-      margin: 5px;
-      border-radius: 10px;
-    }
     
-    header h1 {
-      font-size: 1.5rem;
-    }
-    
-    header p {
-      font-size: 0.8rem;
-    }
-    
-    nav a {
-      padding: 0.6rem 1rem;
-      font-size: 0.8rem;
-    }
-    
-    .service-card {
-      padding: 1rem;
-    }
-    
+    .stats-section,
     .cta-section {
-      padding: 1rem;
+      padding: 2rem 1rem;
+      margin: 2rem 0;
+    }
+    
+    footer {
+      padding: 2rem 1rem;
     }
   }
+
+  /* Loading animation for better UX */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .service-card {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .service-card:nth-child(1) { animation-delay: 0.1s; }
+  .service-card:nth-child(2) { animation-delay: 0.2s; }
+  .service-card:nth-child(3) { animation-delay: 0.3s; }
+  .service-card:nth-child(4) { animation-delay: 0.4s; }
+  .service-card:nth-child(5) { animation-delay: 0.5s; }
+  .service-card:nth-child(6) { animation-delay: 0.6s; }
 </style>
 </head>
 <body>
@@ -411,154 +814,250 @@
     <p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
   </header>
 
-  <div class="main-content">
-    <nav>
-      <ul>
+  <nav class="topnav">
+    <div class="nav-container">
+      <a href="home.html" class="brand">🏪 MAYOKUN STORES</a>
+      <button class="nav-toggle" onclick="toggleDrawer()">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-links">
         <li><a href="home.html">🏠 HOME</a></li>
-        <li><a href="about.html">ℹ️ ABOUT US</a></li>
+        <li><a href="about.html">ℹ️ ABOUT</a></li>
         <li><a href="product.html">🛍️ PRODUCTS</a></li>
         <li><a href="service.html" class="active">🔧 SERVICES</a></li>
         <li><a href="gallery.html">🖼️ GALLERY</a></li>
         <li><a href="register.html">📝 REGISTER</a></li>
         <li><a href="login.html">🔐 LOGIN</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
 
-    <article>
-      <div class="services-intro">
-        <h1>🌟 Our Professional Services</h1>
-        <p>Experience excellence in every service we provide. From convenient home delivery to secure online payments, we're committed to making your shopping experience seamless and enjoyable.</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Fast home delivery service">
-          <div class="service-content">
-            <span class="service-icon">🚚</span>
-            <h3>Home Delivery Service</h3>
-            <p>Get your orders delivered right to your doorstep with our reliable and fast delivery service.</p>
-            <ul class="service-features">
-              <li>Same-day delivery available</li>
-              <li>Real-time tracking</li>
-              <li>Safe and secure packaging</li>
-              <li>Delivery within Ilorin and surrounding areas</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Secure online payment system">
-          <div class="service-content">
-            <span class="service-icon">💳</span>
-            <h3>Online Payment Solutions</h3>
-            <p>Convenient and secure online payment options for all your purchases.</p>
-            <ul class="service-features">
-              <li>Multiple payment methods</li>
-              <li>Bank transfer support</li>
-              <li>Mobile money integration</li>
-              <li>Secure transaction processing</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Quality product sourcing and supply">
-          <div class="service-content">
-            <span class="service-icon">✨</span>
-            <h3>Premium Product Sourcing</h3>
-            <p>We source and supply only the highest quality products from trusted suppliers across Nigeria and internationally.</p>
-            <ul class="service-features">
-              <li>Authentic Oriflame products</li>
-              <li>Quality-assured household items</li>
-              <li>International brand partnerships</li>
-              <li>Regular quality control checks</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Customer support and consultation">
-          <div class="service-content">
-            <span class="service-icon">🎧</span>
-            <h3>Customer Support</h3>
-            <p>Our dedicated customer support team is always ready to assist you with any questions or concerns.</p>
-            <ul class="service-features">
-              <li>24/7 phone support</li>
-              <li>Product consultation</li>
-              <li>Order tracking assistance</li>
-              <li>After-sales support</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Business partnership and wholesale">
-          <div class="service-content">
-            <span class="service-icon">🤝</span>
-            <h3>Business Partnerships</h3>
-            <p>Join our network of partners and enjoy wholesale pricing and exclusive business opportunities.</p>
-            <ul class="service-features">
-              <li>Wholesale pricing</li>
-              <li>Business training programs</li>
-              <li>Marketing support</li>
-              <li>Exclusive product access</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Product customization and special orders">
-          <div class="service-content">
-            <span class="service-icon">⚙️</span>
-            <h3>Custom Orders</h3>
-            <p>Need something specific? We offer customized orders and special product sourcing services.</p>
-            <ul class="service-features">
-              <li>Special product requests</li>
-              <li>Bulk order discounts</li>
-              <li>Custom packaging options</li>
-              <li>Event supply services</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="stats-section">
-        <h2>🏆 Our Service Excellence</h2>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <h3>500+</h3>
-            <p>Happy Customers</p>
-          </div>
-          <div class="stat-item">
-            <h3>98%</h3>
-            <p>Customer Satisfaction</p>
-          </div>
-          <div class="stat-item">
-            <h3>24/7</h3>
-            <p>Customer Support</p>
-          </div>
-          <div class="stat-item">
-            <h3>5+</h3>
-            <p>Years Experience</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="cta-section">
-        <h2>Ready to Experience Our Services?</h2>
-        <p>Join hundreds of satisfied customers who trust Mayokun Stores for their shopping needs.</p>
-        <div class="cta-buttons">
-          <a href="product.html" class="btn btn-primary">🛍️ Shop Now</a>
-          <a href="register.html" class="btn btn-secondary">📝 Register Today</a>
-        </div>
-      </div>
-    </article>
+  <div class="drawer" id="drawerMenu">
+    <div class="drawer-header">
+      <h3>🏪 MAYOKUN STORES</h3>
+      <p>Premium Shopping Experience</p>
+    </div>
+    <ul>
+      <li><a href="home.html">🏠 HOME</a></li>
+      <li><a href="about.html">ℹ️ ABOUT</a></li>
+      <li><a href="product.html">🛍️ PRODUCTS</a></li>
+      <li><a href="service.html" class="active">🔧 SERVICES</a></li>
+      <li><a href="gallery.html">🖼️ GALLERY</a></li>
+      <li><a href="register.html">📝 REGISTER</a></li>
+      <li><a href="login.html">🔐 LOGIN</a></li>
+    </ul>
   </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer()"></div>
+
+  <article>
+    <div class="services-intro">
+      <h1>🌟 Our Professional Services</h1>
+      <p>Experience excellence in every service we provide. From convenient home delivery to secure online payments, we're committed to making your shopping experience seamless and enjoyable.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Fast home delivery service">
+        <div class="service-content">
+          <span class="service-icon">🚚</span>
+          <h3>Home Delivery Service</h3>
+          <p>Get your orders delivered right to your doorstep with our reliable and fast delivery service.</p>
+          <ul class="service-features">
+            <li>Same-day delivery available</li>
+            <li>Real-time tracking</li>
+            <li>Safe and secure packaging</li>
+            <li>Delivery within Ilorin and surrounding areas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Secure online payment system">
+        <div class="service-content">
+          <span class="service-icon">💳</span>
+          <h3>Online Payment Solutions</h3>
+          <p>Convenient and secure online payment options for all your purchases.</p>
+          <ul class="service-features">
+            <li>Multiple payment methods</li>
+            <li>Bank transfer support</li>
+            <li>Mobile money integration</li>
+            <li>Secure transaction processing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Quality product sourcing and supply">
+        <div class="service-content">
+          <span class="service-icon">✨</span>
+          <h3>Premium Product Sourcing</h3>
+          <p>We source and supply only the highest quality products from trusted suppliers across Nigeria and internationally.</p>
+          <ul class="service-features">
+            <li>Authentic Oriflame products</li>
+            <li>Quality-assured household items</li>
+            <li>International brand partnerships</li>
+            <li>Regular quality control checks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Customer support and consultation">
+        <div class="service-content">
+          <span class="service-icon">🎧</span>
+          <h3>Customer Support</h3>
+          <p>Our dedicated customer support team is always ready to assist you with any questions or concerns.</p>
+          <ul class="service-features">
+            <li>24/7 phone support</li>
+            <li>Product consultation</li>
+            <li>Order tracking assistance</li>
+            <li>After-sales support</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Business partnership and wholesale">
+        <div class="service-content">
+          <span class="service-icon">🤝</span>
+          <h3>Business Partnerships</h3>
+          <p>Join our network of partners and enjoy wholesale pricing and exclusive business opportunities.</p>
+          <ul class="service-features">
+            <li>Wholesale pricing</li>
+            <li>Business training programs</li>
+            <li>Marketing support</li>
+            <li>Exclusive product access</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Product customization and special orders">
+        <div class="service-content">
+          <span class="service-icon">⚙️</span>
+          <h3>Custom Orders</h3>
+          <p>Need something specific? We offer customized orders and special product sourcing services.</p>
+          <ul class="service-features">
+            <li>Special product requests</li>
+            <li>Bulk order discounts</li>
+            <li>Custom packaging options</li>
+            <li>Event supply services</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <h2>🏆 Our Service Excellence</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>500+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat-item">
+          <h3>98%</h3>
+          <p>Customer Satisfaction</p>
+        </div>
+        <div class="stat-item">
+          <h3>24/7</h3>
+          <p>Customer Support</p>
+        </div>
+        <div class="stat-item">
+          <h3>5+</h3>
+          <p>Years Experience</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Experience Our Services?</h2>
+      <p>Join hundreds of satisfied customers who trust Mayokun Stores for their shopping needs.</p>
+      <div class="cta-buttons">
+        <a href="product.html" class="btn btn-primary">🛍️ Shop Now</a>
+        <a href="register.html" class="btn btn-secondary">📝 Register Today</a>
+      </div>
+    </div>
+  </article>
 
   <footer>
     <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
   </footer>
 </div>
+
+<script>
+  function toggleDrawer() {
+    const drawer = document.getElementById('drawerMenu');
+    const backdrop = document.getElementById('drawerBackdrop');
+    const hamburger = document.querySelector('.hamburger');
+    const body = document.body;
+    
+    const isOpen = drawer.classList.contains('open');
+    
+    if (isOpen) {
+      drawer.classList.remove('open');
+      backdrop.style.display = 'none';
+      body.style.overflow = '';
+      hamburger.style.transform = '';
+    } else {
+      drawer.classList.add('open');
+      backdrop.style.display = 'block';
+      body.style.overflow = 'hidden';
+      hamburger.style.transform = 'rotate(90deg)';
+    }
+  }
+  
+  // Close drawer when clicking on a link
+  document.addEventListener('DOMContentLoaded', function() {
+    const drawerLinks = document.querySelectorAll('.drawer a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', toggleDrawer);
+    });
+    
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Intersection Observer for animations
+    const observeElements = document.querySelectorAll('.service-card, .stat-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    observeElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  });
+  
+  // Close drawer on window resize if screen gets larger
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 900) {
+      const drawer = document.getElementById('drawerMenu');
+      const backdrop = document.getElementById('drawerBackdrop');
+      const hamburger = document.querySelector('.hamburger');
+      
+      drawer.classList.remove('open');
+      backdrop.style.display = 'none';
+      document.body.style.overflow = '';
+      hamburger.style.transform = '';
+    }
+  });
+  
+  // Add loading state for better UX
+  window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+  });
+</script>
 </body>
 </html>
 
