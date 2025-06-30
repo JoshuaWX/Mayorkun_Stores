@@ -17,6 +17,8 @@
     color: #333;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 
   .container {
@@ -29,6 +31,7 @@
     overflow: hidden;
     margin-top: 20px;
     margin-bottom: 20px;
+    position: relative;
   }
 
   header {
@@ -260,30 +263,182 @@
   }
 
   @media (max-width: 768px) {
+    .container {
+      margin: 10px;
+      border-radius: 15px;
+    }
+    
     .main-content {
       grid-template-columns: 1fr;
+      gap: 0;
     }
     
     nav {
-      order: 2;
+      background: linear-gradient(90deg, #34495e 0%, #2c3e50 100%);
+      padding: 1rem 0;
+      order: 1;
+      border-radius: 0;
+    }
+    
+    nav ul {
+      display: flex;
+      overflow-x: auto;
+      gap: 0.5rem;
+      padding: 0 1rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    
+    nav ul::-webkit-scrollbar {
+      display: none;
+    }
+    
+    nav li {
+      flex-shrink: 0;
+      margin: 0;
+    }
+    
+    nav a {
+      padding: 0.8rem 1.2rem;
+      border-radius: 25px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0 0.25rem;
+    }
+    
+    nav a:hover {
+      transform: none;
+      background: linear-gradient(90deg, #3498db, #2980b9);
+    }
+    
+    #userWelcome {
+      display: none !important;
     }
     
     article {
-      order: 1;
-      padding: 1.5rem;
+      order: 2;
+      padding: 1.5rem 1rem;
+    }
+    
+    header {
+      padding: 1.5rem 1rem;
     }
     
     header h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    header p {
+      font-size: 0.9rem;
+    }
+    
+    .hero-section {
+      padding: 1.5rem 1rem;
+      margin-bottom: 2rem;
     }
     
     .hero-section h1 {
       font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-section p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-image {
+      height: 250px;
+      margin: 1.5rem auto;
     }
     
     .cta-buttons {
       flex-direction: column;
       align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .cta-button {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 250px;
+      text-align: center;
+    }
+    
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .feature-card {
+      padding: 1.5rem 1rem;
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .feature-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    footer {
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      margin: 5px;
+      border-radius: 10px;
+    }
+    
+    header h1 {
+      font-size: 1.5rem;
+    }
+    
+    header p {
+      font-size: 0.8rem;
+    }
+    
+    .hero-section h1 {
+      font-size: 1.8rem;
+    }
+    
+    .hero-section p {
+      font-size: 0.9rem;
+    }
+    
+    .hero-image {
+      height: 200px;
+    }
+    
+    nav a {
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.1rem;
+    }
+    
+    .feature-card p {
+      font-size: 0.85rem;
     }
   }
 </style>
