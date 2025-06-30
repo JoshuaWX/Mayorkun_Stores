@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayokun Stores Limited - Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=home.html">
+    <meta http-equiv="refresh" content="0; url=./home.html">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -75,13 +75,25 @@
         <div class="spinner"></div>
         <div class="redirect-text">Redirecting to homepage...</div>
         <p style="margin-top: 1rem; opacity: 0.8;">If you're not redirected automatically,</p>
-        <a href="home.html" class="manual-link">Click here to continue</a>
+        <a href="./home.html" class="manual-link">Click here to continue</a>
     </div>
 
     <script>
-        // Backup redirect in case meta refresh doesn't work
+        // Multiple redirect methods for better GitHub Pages compatibility
+        
+        // Immediate redirect
+        window.location.replace('home.html');
+        
+        // Backup redirect in case the first doesn't work
         setTimeout(function() {
             window.location.href = 'home.html';
+        }, 100);
+        
+        // Final fallback
+        setTimeout(function() {
+            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+                window.location.assign('home.html');
+            }
         }, 1000);
     </script>
 </body>
