@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Login - Mayokun Stores Limited</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Login to your Mayokun Stores account and access exclusive member benefits">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  nav {
+    background: rgba(44, 62, 80, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  nav a:hover {
+    background: rgba(52, 152, 219, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .main-content {
+    padding: 3rem 2rem;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .login-form {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex: 1;
+    min-width: 350px;
+    max-width: 500px;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .form-header h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-header p {
+    color: #666;
+    font-size: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 2rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .forgot-password {
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+
+  .forgot-password a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+
+  .btn-login {
+    width: 100%;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+  }
+
+  .btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+  }
+
+  .btn-login:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .divider {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e1e8ed;
+  }
+
+  .divider span {
+    background: white;
+    padding: 0 1rem;
+    color: #666;
+  }
+
+  .register-link {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 12px;
+  }
+
+  .register-link a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+
+  .welcome-info {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+  }
+
+  .welcome-info h3 {
+    color: #27ae60;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-info p {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+
+  .benefits {
+    list-style: none;
+  }
+
+  .benefits li {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .benefits li::before {
+    content: '✅';
+    margin-right: 0.5rem;
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+
+  .error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #c62828;
+    display: none;
+  }
+
+  .success-message {
+    background: #e8f5e8;
+    color: #2e7d32;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #2e7d32;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+      padding: 2rem 1rem;
+    }
+
+    .login-form,
+    .welcome-info {
+      min-width: auto;
+      max-width: none;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    nav ul {
+      gap: 1rem;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🏪 Mayokun Stores Limited</h1>
+    <p>Your Trusted Partner in Quality Products & Exceptional Service</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">🏠 Home</a></li>
+      <li><a href="about.html">ℹ️ About</a></li>
+      <li><a href="product.html">📦 Products</a></li>
+      <li><a href="service.html">🛠️ Services</a></li>
+      <li><a href="gallery.html">🖼️ Gallery</a></li>
+      <li><a href="register.html">📝 Register</a></li>
+      <li><a href="payment.html">💳 Payment</a></li>
+    </ul>
+  </nav>
+
+  <div class="main-content">
+    <div class="login-form">
+      <div class="form-header">
+        <h2>🔐 Welcome Back</h2>
+        <p>Sign in to your account</p>
+      </div>
+
+      <div class="error-message" id="errorMessage"></div>
+      <div class="success-message" id="successMessage"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">📧 Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="password">🔒 Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+          <div class="forgot-password">
+            <a href="#" onclick="alert('Password reset functionality coming soon!')">Forgot Password?</a>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">🚀 Sign In</button>
+      </form>
+
+      <div class="divider">
+        <span>New to Mayokun Stores?</span>
+      </div>
+
+      <div class="register-link">
+        <p>Don't have an account? <a href="register.html">Create one now</a></p>
+      </div>
+    </div>
+
+    <div class="welcome-info">
+      <h3>🎉 Member Benefits</h3>
+      <p>Login to access exclusive member benefits and personalized shopping experience.</p>
+      <ul class="benefits">
+        <li>Exclusive member discounts</li>
+        <li>Priority customer support</li>
+        <li>Early access to new products</li>
+        <li>Personalized recommendations</li>
+        <li>Order history and tracking</li>
+        <li>Special promotional offers</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+  </footer>
+</div>
+
+<script>
+  // Show/hide messages
+  function showMessage(type, message) {
+    const errorDiv = document.getElementById('errorMessage');
+    const successDiv = document.getElementById('successMessage');
+    
+    // Hide both messages first
+    errorDiv.style.display = 'none';
+    successDiv.style.display = 'none';
+    
+    if (type === 'error') {
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+    } else if (type === 'success') {
+      successDiv.textContent = message;
+      successDiv.style.display = 'block';
+    }
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      errorDiv.style.display = 'none';
+      successDiv.style.display = 'none';
+    }, 5000);
+  }
+
+  // Check if user is already logged in
+  function checkAuthStatus() {
+    const token = localStorage.getItem('userToken');
+    const userData = localStorage.getItem('userData');
+    
+    if (token && userData) {
+      // User is already logged in, redirect to home
+      window.location.href = 'home.html';
+    }
+  }
+
+  // Call on page load
+  checkAuthStatus();
+
+  // Form submission
+  const form = document.getElementById('loginForm');
+  
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const loginData = {
+      email: formData.get('email'),
+      password: formData.get('password')
+    };
+
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-login');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = '⏳ Signing In...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showMessage('success', 'Login successful! Redirecting...');
+        
+        // Store the token and user data
+        localStorage.setItem('userToken', result.token);
+        localStorage.setItem('userData', JSON.stringify(result.user));
+        
+        // Redirect to home page after a short delay
+        setTimeout(() => {
+          window.location.href = 'home.html';
+        }, 1500);
+      } else {
+        showMessage('error', result.message || 'Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      showMessage('error', 'Login failed: Unable to connect to server. Please try again.');
+    } finally {
+      // Reset button state
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

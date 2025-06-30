@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mayokun Stores - Premium Shopping Experience</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 0;
+    min-height: 70vh;
+  }
+
+  nav {
+    background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%);
+    padding: 2rem 0;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 1rem 2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  nav a:hover::before {
+    left: 100%;
+  }
+
+  nav a:hover {
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  }
+
+  article {
+    padding: 3rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  .hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-section h1 {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-section p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-primary {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+  }
+
+  .cta-secondary {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .feature-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    margin: 2rem auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .hero-image:hover {
+    transform: scale(1.02);
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    
+    nav {
+      order: 2;
+    }
+    
+    article {
+      order: 1;
+      padding: 1.5rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+    
+  </head>
+  <body>
+ 
+<div class="container">
+<header>
+	<h1>MAYOKUN STORES LIMITED</h1>
+	<p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+</header>
+
+<div class="main-content">
+		<nav>
+			<ul>
+        <li><a href="home.html">🏠 HOME</a></li>
+				<li><a href="about.html">ℹ️ ABOUT US</a></li>
+				<li><a href="product.html">🛍️ PRODUCTS</a></li>
+				<li><a href="service.html">🔧 SERVICES</a></li>
+        <li><a href="gallery.html">🖼️ GALLERY</a></li>
+        <li><a href="register.html">📝 REGISTER</a></li>
+        <li><a href="login.html" id="loginLink">🔐 LOGIN</a></li>
+        <li><a href="#" id="logoutLink" style="display: none;" onclick="logout()">🚪 LOGOUT</a></li>
+			</ul>
+			<div id="userWelcome" style="display: none; padding: 1rem 2rem; color: white; text-align: center; border-top: 1px solid rgba(255,255,255,0.2);">
+				<span>👋 Welcome, <span id="userName"></span>!</span>
+			</div>
+		</nav>
+                
+		<article>
+			<div class="hero-section">
+				<h1>Welcome to Mayokun Stores</h1>
+				<p>Your premier destination for quality products and exceptional service. Shop easy, pay easy, and experience the difference that comes with choosing Nigeria's trusted retail partner.</p>
+				
+				<div class="cta-buttons">
+					<a href="product.html" class="cta-button cta-primary">🛍️ Shop Now</a>
+					<a href="register.html" class="cta-button cta-secondary">📝 Join Us Today</a>
+				</div>
+				
+				<img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+				alt="Modern retail store interior with premium shopping experience" class="hero-image">
+			</div>
+
+			<div class="features-grid">
+				<div class="feature-card">
+					<div class="feature-icon">💄</div>
+					<h3>Premium Beauty Products</h3>
+					<p>Discover our exclusive collection of Oriflame cosmetics and beauty essentials, carefully curated for the modern Nigerian woman.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">🏪</div>
+					<h3>Quality Provisions</h3>
+					<p>From household essentials to daily necessities, we stock everything you need under one roof with guaranteed freshness.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">🚚</div>
+					<h3>Home Delivery</h3>
+					<p>Enjoy convenient doorstep delivery across Ilorin and surrounding areas. Fast, reliable, and secure delivery service.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">💳</div>
+					<h3>Secure Payment</h3>
+					<p>Multiple payment options including cash, card, and mobile transfer. Your transactions are always safe and secure.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">🎁</div>
+					<h3>Member Benefits</h3>
+					<p>Join our loyalty program and enjoy up to 23% discount on all purchases, exclusive offers, and priority customer service.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">⭐</div>
+					<h3>Trusted Quality</h3>
+					<p>We partner with reputable brands and suppliers to ensure every product meets our high standards of quality and authenticity.</p>
+				</div>
+			</div>
+		</article>
+</div>           
+
+<footer>
+	<p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+</footer>
+</div>
+
+<script>
+  // Check authentication status on page load
+  function checkAuthStatus() {
+    const token = localStorage.getItem('userToken');
+    const userData = localStorage.getItem('userData');
+    
+    if (token && userData) {
+      try {
+        const user = JSON.parse(userData);
+        showLoggedInState(user);
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        clearAuthData();
+      }
+    } else {
+      showLoggedOutState();
+    }
+  }
+
+  function showLoggedInState(user) {
+    // Hide login link, show logout link
+    document.getElementById('loginLink').style.display = 'none';
+    document.getElementById('logoutLink').style.display = 'block';
+    
+    // Show welcome message
+    document.getElementById('userWelcome').style.display = 'block';
+    document.getElementById('userName').textContent = user.full_name || user.email;
+    
+    // Update CTA buttons for logged-in users
+    const ctaButtons = document.querySelector('.cta-buttons');
+    if (ctaButtons) {
+      ctaButtons.innerHTML = `
+        <a href="product.html" class="cta-button cta-primary">🛍️ Shop Now</a>
+        <a href="payment.html" class="cta-button cta-secondary">💳 My Orders</a>
+      `;
+    }
+  }
+
+  function showLoggedOutState() {
+    // Show login link, hide logout link
+    document.getElementById('loginLink').style.display = 'block';
+    document.getElementById('logoutLink').style.display = 'none';
+    
+    // Hide welcome message
+    document.getElementById('userWelcome').style.display = 'none';
+  }
+
+  function clearAuthData() {
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userData');
+    showLoggedOutState();
+  }
+
+  function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+      clearAuthData();
+      alert('You have been logged out successfully.');
+      // Optionally redirect to login page
+      // window.location.href = 'login.html';
+    }
+  }
+
+  // Call on page load
+  document.addEventListener('DOMContentLoaded', checkAuthStatus);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

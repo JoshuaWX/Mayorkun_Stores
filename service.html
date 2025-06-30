@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Our Services - Mayokun Stores Limited</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Professional services from Mayokun Stores - Home delivery, online payments, quality products, and customer support">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite linear;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 70vh;
+  }
+
+  nav {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem 0;
+    border-right: 1px solid #dee2e6;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+  }
+
+  nav a:hover, nav a.active {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  article {
+    padding: 3rem;
+    background: white;
+  }
+
+  .services-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .services-intro h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .services-intro p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .service-content {
+    padding: 2rem;
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .service-content h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .service-content p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-features {
+    list-style: none;
+  }
+
+  .service-features li {
+    padding: 0.5rem 0;
+    color: #555;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .service-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+  }
+
+  .stats-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .stat-item h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    margin: 3rem 0;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #f5576c;
+    border: 2px solid white;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    
+    nav {
+      order: 2;
+      padding: 1rem;
+    }
+    
+    nav ul {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+    }
+    
+    nav li {
+      flex-shrink: 0;
+    }
+    
+    nav a {
+      white-space: nowrap;
+      border-radius: 25px;
+      margin: 0;
+    }
+    
+    article {
+      order: 1;
+      padding: 2rem 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>MAYOKUN STORES LIMITED</h1>
+    <p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+  </header>
+
+  <div class="main-content">
+    <nav>
+      <ul>
+        <li><a href="home.html">🏠 HOME</a></li>
+        <li><a href="about.html">ℹ️ ABOUT US</a></li>
+        <li><a href="product.html">🛍️ PRODUCTS</a></li>
+        <li><a href="service.html" class="active">🔧 SERVICES</a></li>
+        <li><a href="gallery.html">🖼️ GALLERY</a></li>
+        <li><a href="register.html">📝 REGISTER</a></li>
+        <li><a href="login.html">🔐 LOGIN</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <div class="services-intro">
+        <h1>🌟 Our Professional Services</h1>
+        <p>Experience excellence in every service we provide. From convenient home delivery to secure online payments, we're committed to making your shopping experience seamless and enjoyable.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Fast home delivery service">
+          <div class="service-content">
+            <span class="service-icon">🚚</span>
+            <h3>Home Delivery Service</h3>
+            <p>Get your orders delivered right to your doorstep with our reliable and fast delivery service.</p>
+            <ul class="service-features">
+              <li>Same-day delivery available</li>
+              <li>Real-time tracking</li>
+              <li>Safe and secure packaging</li>
+              <li>Delivery within Ilorin and surrounding areas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Secure online payment system">
+          <div class="service-content">
+            <span class="service-icon">💳</span>
+            <h3>Online Payment Solutions</h3>
+            <p>Convenient and secure online payment options for all your purchases.</p>
+            <ul class="service-features">
+              <li>Multiple payment methods</li>
+              <li>Bank transfer support</li>
+              <li>Mobile money integration</li>
+              <li>Secure transaction processing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Quality product sourcing and supply">
+          <div class="service-content">
+            <span class="service-icon">✨</span>
+            <h3>Premium Product Sourcing</h3>
+            <p>We source and supply only the highest quality products from trusted suppliers across Nigeria and internationally.</p>
+            <ul class="service-features">
+              <li>Authentic Oriflame products</li>
+              <li>Quality-assured household items</li>
+              <li>International brand partnerships</li>
+              <li>Regular quality control checks</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Customer support and consultation">
+          <div class="service-content">
+            <span class="service-icon">🎧</span>
+            <h3>Customer Support</h3>
+            <p>Our dedicated customer support team is always ready to assist you with any questions or concerns.</p>
+            <ul class="service-features">
+              <li>24/7 phone support</li>
+              <li>Product consultation</li>
+              <li>Order tracking assistance</li>
+              <li>After-sales support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Business partnership and wholesale">
+          <div class="service-content">
+            <span class="service-icon">🤝</span>
+            <h3>Business Partnerships</h3>
+            <p>Join our network of partners and enjoy wholesale pricing and exclusive business opportunities.</p>
+            <ul class="service-features">
+              <li>Wholesale pricing</li>
+              <li>Business training programs</li>
+              <li>Marketing support</li>
+              <li>Exclusive product access</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Product customization and special orders">
+          <div class="service-content">
+            <span class="service-icon">⚙️</span>
+            <h3>Custom Orders</h3>
+            <p>Need something specific? We offer customized orders and special product sourcing services.</p>
+            <ul class="service-features">
+              <li>Special product requests</li>
+              <li>Bulk order discounts</li>
+              <li>Custom packaging options</li>
+              <li>Event supply services</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h2>🏆 Our Service Excellence</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h3>500+</h3>
+            <p>Happy Customers</p>
+          </div>
+          <div class="stat-item">
+            <h3>98%</h3>
+            <p>Customer Satisfaction</p>
+          </div>
+          <div class="stat-item">
+            <h3>24/7</h3>
+            <p>Customer Support</p>
+          </div>
+          <div class="stat-item">
+            <h3>5+</h3>
+            <p>Years Experience</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to Experience Our Services?</h2>
+        <p>Join hundreds of satisfied customers who trust Mayokun Stores for their shopping needs.</p>
+        <div class="cta-buttons">
+          <a href="product.html" class="btn btn-primary">🛍️ Shop Now</a>
+          <a href="register.html" class="btn btn-secondary">📝 Register Today</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+  </footer>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

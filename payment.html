@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Secure Payment - Mayokun Stores Limited</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Secure payment portal for Mayokun Stores - Multiple payment options including card payments, bank transfers, and mobile money">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite linear;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 70vh;
+  }
+
+  nav {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem 0;
+    border-right: 1px solid #dee2e6;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+  }
+
+  nav a:hover, nav a.active {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  article {
+    padding: 3rem;
+    background: white;
+  }
+
+  .payment-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .payment-intro h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .security-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .security-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 2px solid #e0e0e0;
+    font-size: 0.9rem;
+    color: #2c3e50;
+  }
+
+  .payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .payment-method {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .payment-method:hover, .payment-method.active {
+    border-color: #3498db;
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.2);
+    transform: translateY(-5px);
+  }
+
+  .payment-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .payment-method h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .payment-form {
+    background: #f8f9fa;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  .payment-form.active {
+    display: block;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .form-header h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .order-summary {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+  }
+
+  .order-summary h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .summary-items {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .total-amount {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  .submit-section {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+  }
+
+  .btn-pay {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .btn-pay:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4);
+    background: linear-gradient(135deg, #229954, #27ae60);
+  }
+
+  .security-notice {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .security-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .security-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    
+    nav {
+      order: 2;
+      padding: 1rem;
+    }
+    
+    nav ul {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+    }
+    
+    nav li {
+      flex-shrink: 0;
+    }
+    
+    nav a {
+      white-space: nowrap;
+      border-radius: 25px;
+      margin: 0;
+    }
+    
+    article {
+      order: 1;
+      padding: 2rem 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    .payment-methods {
+      grid-template-columns: 1fr;
+    }
+    
+    .payment-form {
+      padding: 2rem 1rem;
+    }
+    
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>💳 SECURE PAYMENT PORTAL</h1>
+    <p>Fast, Safe & Reliable Payment Processing</p>
+  </header>
+
+  <div class="main-content">
+    <nav>
+      <ul>
+        <li><a href="home.html">🏠 HOME</a></li>
+        <li><a href="about.html">ℹ️ ABOUT US</a></li>
+        <li><a href="product.html">🛍️ PRODUCTS</a></li>
+        <li><a href="service.html">🔧 SERVICES</a></li>
+        <li><a href="gallery.html">🖼️ GALLERY</a></li>
+        <li><a href="register.html">📝 REGISTER</a></li>
+        <li><a href="login.html">🔐 LOGIN</a></li>
+        <li><a href="payment.html" class="active">💳 PAYMENT</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <div class="payment-intro">
+        <h1>💳 Complete Your Payment</h1>
+        <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Choose your preferred payment method and complete your order securely</p>
+        
+        <div class="security-badges">
+          <div class="security-badge">
+            <span>🔒</span>
+            <span>SSL Encrypted</span>
+          </div>
+          <div class="security-badge">
+            <span>🛡️</span>
+            <span>PCI Compliant</span>
+          </div>
+          <div class="security-badge">
+            <span>✅</span>
+            <span>Verified Secure</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <h3>📋 Order Summary</h3>
+        <div class="summary-items">
+          <span>Product Items:</span>
+          <span>₦15,500.00</span>
+        </div>
+        <div class="summary-items">
+          <span>Delivery Fee:</span>
+          <span>₦1,500.00</span>
+        </div>
+        <div class="summary-items">
+          <span>Member Discount (-23%):</span>
+          <span>-₦3,565.00</span>
+        </div>
+        <div class="total-amount">
+          <span>Total Amount:</span>
+          <span>₦13,435.00</span>
+        </div>
+      </div>
+
+      <div class="payment-methods">
+        <div class="payment-method active" data-method="card">
+          <span class="payment-icon">💳</span>
+          <h3>Card Payment</h3>
+          <p>Pay with Debit/Credit Card</p>
+        </div>
+
+        <div class="payment-method" data-method="bank">
+          <span class="payment-icon">🏦</span>
+          <h3>Bank Transfer</h3>
+          <p>Direct bank account transfer</p>
+        </div>
+
+        <div class="payment-method" data-method="mobile">
+          <span class="payment-icon">📱</span>
+          <h3>Mobile Money</h3>
+          <p>Pay with mobile wallet</p>
+        </div>
+      </div>
+
+      <!-- Card Payment Form -->
+      <div class="payment-form active" id="cardForm">
+        <div class="form-header">
+          <h2>💳 Card Payment Details</h2>
+          <p style="color: #666;">Enter your card information securely</p>
+        </div>
+
+        <form id="cardPaymentForm">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="card_number">💳 Card Number</label>
+              <input type="text" id="card_number" name="card_number" required placeholder="1234 5678 9012 3456" maxlength="19">
+            </div>
+
+            <div class="form-group">
+              <label for="card_name">👤 Cardholder Name</label>
+              <input type="text" id="card_name" name="card_name" required placeholder="JOHN DOE">
+            </div>
+
+            <div class="form-group">
+              <label for="exp_date">📅 Expiry Date</label>
+              <input type="text" id="exp_date" name="exp_date" required placeholder="MM/YY" maxlength="5">
+            </div>
+
+            <div class="form-group">
+              <label for="cvv">🔐 CVV</label>
+              <input type="password" id="cvv" name="cvv" required placeholder="123" maxlength="4">
+            </div>
+
+            <div class="form-group">
+              <label for="pin">🔑 Card PIN</label>
+              <input type="password" id="pin" name="pin" required placeholder="****" maxlength="4">
+            </div>
+          </div>
+
+          <div class="submit-section">
+            <button type="submit" class="btn-pay">🚀 Pay ₦13,435.00</button>
+            <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+              Your payment is protected by 256-bit SSL encryption
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Bank Transfer Form -->
+      <div class="payment-form" id="bankForm">
+        <div class="form-header">
+          <h2>🏦 Bank Transfer Payment</h2>
+          <p style="color: #666;">Transfer to our secure bank account</p>
+        </div>
+
+        <div style="background: white; padding: 2rem; border-radius: 15px; border: 2px solid #3498db; margin-bottom: 2rem;">
+          <h3 style="color: #2c3e50; margin-bottom: 1rem;">Bank Details</h3>
+          <div style="display: grid; gap: 1rem;">
+            <div><strong>Bank Name:</strong> First Bank of Nigeria</div>
+            <div><strong>Account Name:</strong> Mayokun Stores Limited</div>
+            <div><strong>Account Number:</strong> 1234567890</div>
+            <div><strong>Amount:</strong> ₦13,435.00</div>
+          </div>
+        </div>
+
+        <form id="bankPaymentForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="sender_name">👤 Your Name</label>
+              <input type="text" id="sender_name" name="sender_name" required placeholder="Full Name">
+            </div>
+
+            <div class="form-group">
+              <label for="transaction_ref">📄 Transaction Reference</label>
+              <input type="text" id="transaction_ref" name="transaction_ref" required placeholder="Bank reference number">
+            </div>
+
+            <div class="form-group full-width">
+              <label for="transfer_proof">📎 Upload Transfer Proof</label>
+              <input type="file" id="transfer_proof" name="transfer_proof" accept="image/*,.pdf">
+            </div>
+          </div>
+
+          <div class="submit-section">
+            <button type="submit" class="btn-pay">✅ Confirm Payment</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Mobile Money Form -->
+      <div class="payment-form" id="mobileForm">
+        <div class="form-header">
+          <h2>📱 Mobile Money Payment</h2>
+          <p style="color: #666;">Pay with your mobile wallet</p>
+        </div>
+
+        <form id="mobilePaymentForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="mobile_provider">📞 Mobile Provider</label>
+              <select id="mobile_provider" name="mobile_provider" required>
+                <option value="">Select Provider</option>
+                <option value="mtn">MTN Mobile Money</option>
+                <option value="airtel">Airtel Money</option>
+                <option value="glo">Glo Mobile Money</option>
+                <option value="9mobile">9mobile Wallet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mobile_number">📱 Mobile Number</label>
+              <input type="tel" id="mobile_number" name="mobile_number" required placeholder="08012345678">
+            </div>
+
+            <div class="form-group">
+              <label for="mobile_pin">🔐 Mobile PIN</label>
+              <input type="password" id="mobile_pin" name="mobile_pin" required placeholder="****" maxlength="4">
+            </div>
+          </div>
+
+          <div class="submit-section">
+            <button type="submit" class="btn-pay">💰 Pay ₦13,435.00</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="security-notice">
+        <h3>🛡️ Your Security is Our Priority</h3>
+        <div class="security-features">
+          <div class="security-feature">
+            <span>🔐</span>
+            <span>End-to-end encryption</span>
+          </div>
+          <div class="security-feature">
+            <span>🚫</span>
+            <span>No data stored on servers</span>
+          </div>
+          <div class="security-feature">
+            <span>✅</span>
+            <span>PCI DSS compliant</span>
+          </div>
+          <div class="security-feature">
+            <span>🔒</span>
+            <span>Fraud protection</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Secure Payment Processing</p>
+  </footer>
+</div>
+
+<script>
+  // Payment method selection
+  const paymentMethods = document.querySelectorAll('.payment-method');
+  const paymentForms = document.querySelectorAll('.payment-form');
+
+  paymentMethods.forEach(method => {
+    method.addEventListener('click', () => {
+      // Remove active class from all methods and forms
+      paymentMethods.forEach(m => m.classList.remove('active'));
+      paymentForms.forEach(f => f.classList.remove('active'));
+
+      // Add active class to clicked method
+      method.classList.add('active');
+
+      // Show corresponding form
+      const methodType = method.dataset.method;
+      document.getElementById(methodType + 'Form').classList.add('active');
+    });
+  });
+
+  // Card number formatting
+  const cardNumberInput = document.getElementById('card_number');
+  if (cardNumberInput) {
+    cardNumberInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      this.value = formattedValue;
+    });
+  }
+
+  // Expiry date formatting
+  const expDateInput = document.getElementById('exp_date');
+  if (expDateInput) {
+    expDateInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+      }
+      this.value = value;
+    });
+  }
+
+  // Form submissions
+  document.getElementById('cardPaymentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('🎉 Payment Successful! Your order has been confirmed. Thank you for shopping with Mayokun Stores!');
+  });
+
+  document.getElementById('bankPaymentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('✅ Transfer confirmation received! We will verify your payment and process your order within 24 hours.');
+  });
+
+  document.getElementById('mobilePaymentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('💰 Mobile payment initiated! Please check your phone for the payment prompt.');
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

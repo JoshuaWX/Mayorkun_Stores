@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Register - Mayokun Stores Limited</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Mayokun Stores today and enjoy exclusive member benefits, discounts, and premium services">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite linear;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 70vh;
+  }
+
+  nav {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem 0;
+    border-right: 1px solid #dee2e6;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+  }
+
+  nav a:hover, nav a.active {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  article {
+    padding: 3rem;
+    background: white;
+  }
+
+  .register-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .register-intro h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .benefits-section {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+    margin-bottom: 3rem;
+  }
+
+  .benefits-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .benefit-icon {
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+
+  .registration-form {
+    background: #f8f9fa;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .form-header h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .age-container {
+    position: relative;
+  }
+
+  .age-value {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #3498db;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+
+  .submit-section {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+  }
+
+  .btn-register {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .btn-register:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+    background: linear-gradient(135deg, #2980b9, #3498db);
+  }
+
+  .contact-info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .contact-info h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    
+    nav {
+      order: 2;
+      padding: 1rem;
+    }
+    
+    nav ul {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+    }
+    
+    nav li {
+      flex-shrink: 0;
+    }
+    
+    nav a {
+      white-space: nowrap;
+      border-radius: 25px;
+      margin: 0;
+    }
+    
+    article {
+      order: 1;
+      padding: 2rem 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .registration-form {
+      padding: 2rem 1rem;
+    }
+    
+    .contact-methods {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>MAYOKUN STORES LIMITED</h1>
+    <p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+  </header>
+
+  <div class="main-content">
+    <nav>
+      <ul>
+        <li><a href="home.html">🏠 HOME</a></li>
+        <li><a href="about.html">ℹ️ ABOUT US</a></li>
+        <li><a href="product.html">🛍️ PRODUCTS</a></li>
+        <li><a href="service.html">🔧 SERVICES</a></li>
+        <li><a href="gallery.html">🖼️ GALLERY</a></li>
+        <li><a href="register.html" class="active">📝 REGISTER</a></li>
+        <li><a href="login.html">🔐 LOGIN</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <div class="register-intro">
+        <h1>📝 Join Our Community</h1>
+        <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">Become a valued member of the Mayokun Stores family and unlock exclusive benefits, discounts, and premium services.</p>
+      </div>
+
+      <div class="benefits-section">
+        <h2>🎁 Member Benefits</h2>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <span class="benefit-icon">💰</span>
+            <div>
+              <h4>23% Discount</h4>
+              <p>Save money on every purchase</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🆓</span>
+            <div>
+              <h4>Free Registration</h4>
+              <p>No registration fees</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">✨</span>
+            <div>
+              <h4>Premium Products</h4>
+              <p>Access to quality items</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🚚</span>
+            <div>
+              <h4>Priority Delivery</h4>
+              <p>Faster shipping for members</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🎯</span>
+            <div>
+              <h4>Exclusive Offers</h4>
+              <p>Member-only promotions</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🛡️</span>
+            <div>
+              <h4>Reliable Service</h4>
+              <p>Guaranteed satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="registration-form">
+        <div class="form-header">
+          <h2>Create Your Account</h2>
+          <p style="color: #666;">Fill in your details below to get started</p>
+        </div>
+
+        <form id="registrationForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fname">👤 Full Name *</label>
+              <input type="text" id="fname" name="fname" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">📧 Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">📱 Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="08012345678">
+            </div>
+
+            <div class="form-group">
+              <label for="dob">📅 Date of Birth *</label>
+              <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+              <label for="gender">⚧ Gender *</label>
+              <select name="gender" id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="marital_status">💑 Marital Status</label>
+              <select name="marital_status" id="marital_status">
+                <option value="">Select Status</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="state">🗺️ State of Residence *</label>
+              <select name="state" id="state" required>
+                <option value="">Select State</option>
+                <option value="kwara">Kwara</option>
+                <option value="abia">Abia</option>
+                <option value="adamawa">Adamawa</option>
+                <option value="akwa-ibom">Akwa Ibom</option>
+                <option value="anambra">Anambra</option>
+                <option value="bauchi">Bauchi</option>
+                <option value="bayelsa">Bayelsa</option>
+                <option value="benue">Benue</option>
+                <option value="borno">Borno</option>
+                <option value="cross-river">Cross River</option>
+                <option value="delta">Delta</option>
+                <option value="ebonyi">Ebonyi</option>
+                <option value="edo">Edo</option>
+                <option value="ekiti">Ekiti</option>
+                <option value="enugu">Enugu</option>
+                <option value="gombe">Gombe</option>
+                <option value="imo">Imo</option>
+                <option value="jigawa">Jigawa</option>
+                <option value="kaduna">Kaduna</option>
+                <option value="kano">Kano</option>
+                <option value="katsina">Katsina</option>
+                <option value="kebbi">Kebbi</option>
+                <option value="kogi">Kogi</option>
+                <option value="lagos">Lagos</option>
+                <option value="nasarawa">Nasarawa</option>
+                <option value="niger">Niger</option>
+                <option value="ogun">Ogun</option>
+                <option value="ondo">Ondo</option>
+                <option value="osun">Osun</option>
+                <option value="oyo">Oyo</option>
+                <option value="plateau">Plateau</option>
+                <option value="rivers">Rivers</option>
+                <option value="sokoto">Sokoto</option>
+                <option value="taraba">Taraba</option>
+                <option value="yobe">Yobe</option>
+                <option value="zamfara">Zamfara</option>
+                <option value="fct">FCT Abuja</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="age">🎂 Age: <span id="ageValue">25</span></label>
+              <div class="age-container">
+                <input type="range" id="age" name="age" min="18" max="100" value="25">
+                <span class="age-value" id="ageDisplay">25</span>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="address">🏠 Address *</label>
+              <input type="text" id="address" name="address" required placeholder="Enter your full address">
+            </div>
+
+            <div class="form-group">
+              <label for="password">🔒 Password *</label>
+              <input type="password" id="password" name="password" required placeholder="Create a secure password" minlength="6">
+            </div>
+
+            <div class="form-group">
+              <label for="confirm_password">🔐 Confirm Password *</label>
+              <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
+            </div>
+          </div>
+
+          <div class="submit-section">
+            <button type="submit" class="btn-register">🚀 Register Now</button>
+            <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+              By registering, you agree to our terms and conditions
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h3>🤝 Need Help with Registration?</h3>
+        <p>Our team is ready to assist you with the registration process</p>
+        <div class="contact-methods">
+          <div class="contact-item">
+            <span>📞</span>
+            <span>08038323369</span>
+          </div>
+          <div class="contact-item">
+            <span>📱</span>
+            <span>08035806759</span>
+          </div>
+          <div class="contact-item">
+            <span>📍</span>
+            <span>Visit our store in Ilorin</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+  </footer>
+</div>
+
+<script>
+  // Age slider functionality
+  const ageSlider = document.getElementById('age');
+  const ageValue = document.getElementById('ageValue');
+  const ageDisplay = document.getElementById('ageDisplay');
+
+  ageSlider.addEventListener('input', function() {
+    const value = this.value;
+    ageValue.textContent = value;
+    ageDisplay.textContent = value;
+  });
+
+  // Form validation
+  const form = document.getElementById('registrationForm');
+  const password = document.getElementById('password');
+  const confirmPassword = document.getElementById('confirm_password');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Check if passwords match
+    if (password.value !== confirmPassword.value) {
+      alert('Passwords do not match. Please try again.');
+      confirmPassword.focus();
+      return;
+    }
+
+    // Check password strength
+    if (password.value.length < 6) {
+      alert('Password must be at least 6 characters long.');
+      password.focus();
+      return;
+    }
+
+    // Prepare form data
+    const formData = new FormData(form);
+    const userData = {
+      full_name: formData.get('fname'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      password: formData.get('password'),
+      date_of_birth: formData.get('dob'),
+      gender: formData.get('gender'),
+      marital_status: formData.get('marital_status') || null,
+      state: formData.get('state'),
+      address: formData.get('address'),
+      age: parseInt(formData.get('age'))
+    };
+
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-register');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = '⏳ Registering...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Registration successful! Welcome to Mayokun Stores family. 🎉');
+        
+        // Store the token for immediate login
+        if (result.token) {
+          localStorage.setItem('userToken', result.token);
+          localStorage.setItem('userData', JSON.stringify(result.user));
+        }
+        
+        // Redirect to home page
+        window.location.href = 'home.html';
+      } else {
+        // Handle validation errors
+        if (result.errors && result.errors.length > 0) {
+          const errorMessage = result.errors.map(err => err.msg).join('\n');
+          alert('Registration failed:\n' + errorMessage);
+        } else {
+          alert('Registration failed: ' + (result.message || 'Unknown error occurred'));
+        }
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      alert('Registration failed: Unable to connect to server. Please try again.');
+    } finally {
+      // Reset button state
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Real-time password matching
+  confirmPassword.addEventListener('input', function() {
+    if (this.value !== password.value) {
+      this.style.borderColor = '#e74c3c';
+    } else {
+      this.style.borderColor = '#27ae60';
+    }
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Gallery - Mayokun Stores Limited</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Explore our gallery showcasing our premium products, store locations, and happy customers">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite linear;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 70vh;
+  }
+
+  nav {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem 0;
+    border-right: 1px solid #dee2e6;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+  }
+
+  nav a:hover, nav a.active {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  article {
+    padding: 3rem;
+    background: white;
+  }
+
+  .gallery-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .gallery-intro h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gallery-intro p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .gallery-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .category-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: #f8f9fa;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .category-btn.active, .category-btn:hover {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .gallery-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(155, 89, 182, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .overlay-content {
+    text-align: center;
+    color: white;
+  }
+
+  .overlay-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .overlay-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .gallery-info {
+    padding: 1.5rem;
+  }
+
+  .gallery-info h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .gallery-info p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .stats-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .stat-item h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    margin: 3rem 0;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #f5576c;
+    border: 2px solid white;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Modal styles for image preview */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-content {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 5%;
+    border-radius: 10px;
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .close:hover {
+    opacity: 0.7;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    
+    nav {
+      order: 2;
+      padding: 1rem;
+    }
+    
+    nav ul {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+    }
+    
+    nav li {
+      flex-shrink: 0;
+    }
+    
+    nav a {
+      white-space: nowrap;
+      border-radius: 25px;
+      margin: 0;
+    }
+    
+    article {
+      order: 1;
+      padding: 2rem 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>MAYOKUN STORES LIMITED</h1>
+    <p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+  </header>
+
+  <div class="main-content">
+    <nav>
+      <ul>
+        <li><a href="home.html">🏠 HOME</a></li>
+        <li><a href="about.html">ℹ️ ABOUT US</a></li>
+        <li><a href="product.html">🛍️ PRODUCTS</a></li>
+        <li><a href="service.html">🔧 SERVICES</a></li>
+        <li><a href="gallery.html" class="active">🖼️ GALLERY</a></li>
+        <li><a href="register.html">📝 REGISTER</a></li>
+        <li><a href="login.html">🔐 LOGIN</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <div class="gallery-intro">
+        <h1>🖼️ Our Gallery</h1>
+        <p>Explore our collection of premium products, store locations, and happy customers. Get a glimpse of what makes Mayokun Stores your trusted shopping destination.</p>
+      </div>
+
+      <div class="gallery-categories">
+        <button class="category-btn active">All</button>
+        <button class="category-btn">Products</button>
+        <button class="category-btn">Store</button>
+        <button class="category-btn">Customers</button>
+        <button class="category-btn">Events</button>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="products">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Premium Oriflame cosmetics collection">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">💄</div>
+              <h3>Oriflame Collection</h3>
+              <p>Premium Swedish beauty products</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Oriflame Beauty Products</h3>
+            <p>Our extensive collection of premium Swedish beauty and skincare products</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="store">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Modern store interior with organized shelves">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">🏪</div>
+              <h3>Store Interior</h3>
+              <p>Modern and organized shopping space</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Our Store Interior</h3>
+            <p>Well-organized and modern store layout for comfortable shopping experience</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="products">
+          <img src="https://images.unsplash.com/photo-1543168256-418811576931?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Fresh groceries and household items">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">🛒</div>
+              <h3>Household Essentials</h3>
+              <p>Quality everyday products</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Household Essentials</h3>
+            <p>Fresh groceries and quality household items for your daily needs</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="customers">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Happy customers shopping">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">😊</div>
+              <h3>Happy Customers</h3>
+              <p>Satisfied and loyal shoppers</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Satisfied Customers</h3>
+            <p>Our customers enjoying their shopping experience with us</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="products">
+          <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Electronics and gadgets display">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">📱</div>
+              <h3>Electronics</h3>
+              <p>Latest gadgets and devices</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Electronics & Gadgets</h3>
+            <p>Latest electronic devices and accessories at competitive prices</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Product launch event">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">🎉</div>
+              <h3>Product Launch</h3>
+              <p>Exclusive product unveiling</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Product Launch Event</h3>
+            <p>Launching new products with our valued customers and partners</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="store">
+          <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Delivery service in action">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">🚚</div>
+              <h3>Home Delivery</h3>
+              <p>Fast and reliable service</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Home Delivery Service</h3>
+            <p>Our reliable delivery team ensuring your orders reach you safely</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="products">
+          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Fashion accessories and shoes">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">👠</div>
+              <h3>Fashion & Style</h3>
+              <p>Trendy accessories and footwear</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Fashion Accessories</h3>
+            <p>Stylish shoes, bags, and accessories for every occasion</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="customers">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Customer consultation session">
+          <div class="gallery-overlay">
+            <div class="overlay-content">
+              <div class="overlay-icon">🤝</div>
+              <h3>Customer Service</h3>
+              <p>Personalized assistance</p>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3>Personal Consultation</h3>
+            <p>Our team providing personalized product recommendations and support</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h2>📸 Gallery Highlights</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h3>100+</h3>
+            <p>Product Photos</p>
+          </div>
+          <div class="stat-item">
+            <h3>50+</h3>
+            <p>Happy Moments</p>
+          </div>
+          <div class="stat-item">
+            <h3>25+</h3>
+            <p>Store Events</p>
+          </div>
+          <div class="stat-item">
+            <h3>5+</h3>
+            <p>Years Documented</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to Be Part of Our Story?</h2>
+        <p>Join our growing family of satisfied customers and experience the quality that sets us apart.</p>
+        <div class="cta-buttons">
+          <a href="product.html" class="btn btn-primary">🛍️ Shop Now</a>
+          <a href="register.html" class="btn btn-secondary">📝 Join Us Today</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+  </footer>
+</div>
+
+<!-- Modal for image preview -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+  // Gallery filtering functionality
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active class from all buttons
+      categoryBtns.forEach(b => b.classList.remove('active'));
+      // Add active class to clicked button
+      btn.classList.add('active');
+
+      const category = btn.textContent.toLowerCase();
+
+      galleryItems.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Image modal functionality
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeBtn = document.querySelector('.close');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      modal.style.display = 'block';
+      modalImg.src = img.src;
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

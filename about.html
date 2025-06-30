@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>About Us - Mayokun Stores</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 0;
+    min-height: 70vh;
+  }
+
+  nav {
+    background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%);
+    padding: 2rem 0;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 1rem 2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  nav a:hover::before {
+    left: 100%;
+  }
+
+  nav a:hover {
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  }
+
+  article {
+    padding: 3rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    border-radius: 2px;
+  }
+
+  .about-section {
+    margin-bottom: 3rem;
+  }
+
+  .about-section h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .about-section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #3498db, #2980b9);
+    border-radius: 2px;
+  }
+
+  .company-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .info-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .info-box:hover::before {
+    transform: scaleX(1);
+  }
+
+  .info-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .info-box h3 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .mission-vision {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid #3498db;
+    transition: all 0.3s ease;
+  }
+
+  .mission-vision:hover {
+    transform: translateX(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .mission-vision h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .mission-vision h3 {
+    color: #34495e;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  .mission-vision ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .mission-vision li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .mission-vision li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .about-section {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .about-section:nth-child(even) {
+    animation-delay: 0.1s;
+  }
+
+  .about-section:nth-child(odd) {
+    animation-delay: 0.2s;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    
+    nav {
+      order: 2;
+    }
+    
+    article {
+      order: 1;
+      padding: 1.5rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    .company-info {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>MAYOKUN STORES LIMITED</h1>
+    <p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+  </header>
+
+  <div class="main-content">
+    <nav>
+      <ul>
+        <li><a href="home.html">🏠 HOME</a></li>
+        <li><a href="about.html">ℹ️ ABOUT US</a></li>
+        <li><a href="product.html">🛍️ PRODUCTS</a></li>
+        <li><a href="service.html">🔧 SERVICES</a></li>
+        <li><a href="gallery.html">🖼️ GALLERY</a></li>
+        <li><a href="register.html">📝 REGISTER</a></li>
+        <li><a href="login.html">🔐 LOGIN</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <h1>About Mayokun Stores Limited</h1>
+      
+      <div class="about-section">
+        <p style="font-size: 1.1rem; text-align: center; color: #555; margin-bottom: 2rem;">Welcome to Mayokun Stores Limited, your trusted partner in quality retail shopping since our establishment. We are proudly located in the heart of Ilorin, Kwara State, where we serve our valued customers with dedication and excellence.</p>
+      </div>
+
+      <div class="mission-vision">
+        <h2>🎯 Our Mission</h2>
+        <p>To provide high-quality products at affordable prices while delivering exceptional customer service that exceeds expectations. We strive to make shopping easy, convenient, and enjoyable for all our customers.</p>
+        
+        <h2>🌟 Our Vision</h2>
+        <p>To become the leading retail store in Kwara State and beyond, recognized for our commitment to quality, customer satisfaction, and community development.</p>
+      </div>
+
+      <div class="about-section">
+        <h2>🛒 What We Offer</h2>
+        <div class="company-info">
+          <div class="info-box">
+            <h3>💄 Oriflame Products</h3>
+            <p>Premium beauty and wellness products from the renowned Oriflame brand, including skincare, cosmetics, and personal care items that enhance your natural beauty.</p>
+          </div>
+          <div class="info-box">
+            <h3>🏪 General Provisions</h3>
+            <p>A comprehensive range of household essentials, food items, and daily necessities to meet all your shopping needs under one roof.</p>
+          </div>
+          <div class="info-box">
+            <h3>✨ Cosmetics Section</h3>
+            <p>Quality cosmetics and beauty products from various trusted international and local brands to help you look and feel your best.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h2>🏆 Why Choose Mayokun Stores?</h2>
+        <div class="company-info">
+          <div class="info-box">
+            <h3>✅ Quality Assurance</h3>
+            <p>We source only the finest products from trusted suppliers and conduct rigorous quality checks to ensure customer satisfaction.</p>
+          </div>
+          <div class="info-box">
+            <h3>💰 Competitive Prices</h3>
+            <p>Enjoy exceptional value for money with our competitive pricing, regular promotions, and special discounts for registered customers.</p>
+          </div>
+          <div class="info-box">
+            <h3>🤝 Excellent Service</h3>
+            <p>Our friendly, knowledgeable staff are always ready to assist you with personalized recommendations and exceptional customer care.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h2>🎁 Customer Benefits</h2>
+        <div class="mission-vision">
+          <h3>Premium Membership Benefits</h3>
+          <ul>
+            <li><strong>23% Discount:</strong> Enjoy significant savings on all purchases</li>
+            <li><strong>Free Registration:</strong> No charges for becoming a valued member</li>
+            <li><strong>Priority Service:</strong> Fast-track customer support and assistance</li>
+            <li><strong>Home Delivery:</strong> Convenient, reliable delivery to your doorstep</li>
+            <li><strong>Secure Online Payment:</strong> Multiple safe and easy payment options</li>
+            <li><strong>Exclusive Offers:</strong> First access to new products and special deals</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h2>💎 Our Core Values</h2>
+        <div class="company-info">
+          <div class="info-box">
+            <h3>🎯 Customer Satisfaction</h3>
+            <p>Your happiness is our ultimate priority. We continuously strive to exceed expectations and improve our services based on your valuable feedback.</p>
+          </div>
+          <div class="info-box">
+            <h3>🌍 Community Development</h3>
+            <p>We believe in giving back to our community, supporting local businesses, and contributing to the economic growth of Kwara State.</p>
+          </div>
+          <div class="info-box">
+            <h3>🚀 Innovation</h3>
+            <p>We embrace cutting-edge technology and modern retail practices to enhance your shopping experience and make it more convenient.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h2>📞 Contact Information</h2>
+        <div class="mission-vision">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <div>
+              <p><strong>📍 Address:</strong><br>Offa garage, off Ajase Ipo road<br>Ilorin, Kwara State, Nigeria</p>
+              <p><strong>📱 Phone:</strong><br>08038323369 | 08035806759</p>
+            </div>
+            <div>
+              <p><strong>🕒 Business Hours:</strong><br>Monday - Saturday: 8:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 6:00 PM</p>
+              <p><strong>💳 Payment Methods:</strong><br>Cash, Card, Mobile Transfer</p>
+            </div>
+          </div>
+          
+          <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">Visit us today and experience the difference in quality shopping. For more information about our products and services, please don't hesitate to call us or visit our store. We're here to serve you better!</p>
+        </div>
+      </div>
+
+    </article>
+  </div>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+  </footer>
+</div>
+</body>
+</html>
