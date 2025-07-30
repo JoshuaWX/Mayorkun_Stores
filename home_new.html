@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mayokun Stores - Premium Shopping Experience</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mayokun Stores Limited - Your premier destination for quality products and exceptional service in Kwara State">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary-color: #f59e0b;
+    --accent-color: #06b6d4;
+    --success-color: #10b981;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f8fafc;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: var(--bg-white);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Modern Header */
+  header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><circle cx="20" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="10" r="0.3" fill="rgba(255,255,255,0.08)"/><circle cx="60" cy="10" r="0.4" fill="rgba(255,255,255,0.06)"/><circle cx="80" cy="10" r="0.2" fill="rgba(255,255,255,0.05)"/></svg>');
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(10px) translateY(-10px); }
+  }
+
+  header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.025em;
+  }
+
+  header p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Modern Top Navigation */
+  .topnav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+
+  .brand {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links li a {
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+  }
+
+  .nav-toggle:hover {
+    background: var(--bg-light);
+  }
+
+  .hamburger {
+    width: 24px;
+    height: 2px;
+    background: var(--text-dark);
+    display: block;
+    position: relative;
+    transition: 0.3s;
+    border-radius: 2px;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  .hamburger::before { top: -8px; }
+  .hamburger::after { top: 8px; }
+
+  /* Modern Mobile Drawer */
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100vh;
+    background: var(--bg-white);
+    box-shadow: var(--shadow-lg);
+    transition: left 0.3s ease;
+    z-index: 2000;
+    padding: 2rem 0;
+    border-right: 1px solid var(--border-color);
+  }
+
+  .drawer.open {
+    left: 0;
+  }
+
+  .drawer-header {
+    padding: 0 2rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+  }
+
+  .drawer-header h3 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .drawer-header p {
+    color: var(--text-light);
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+  }
+
+  .drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .drawer ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+    font-weight: 500;
+  }
+
+  .drawer ul li a:hover,
+  .drawer ul li a.active {
+    background: var(--bg-light);
+    border-left-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+
+  .drawer-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    backdrop-filter: blur(4px);
+  }
+
+  .drawer.open ~ .drawer-backdrop {
+    display: block;
+  }
+
+  /* Main Content */
+  article {
+    padding: 4rem 2rem;
+    background: var(--bg-white);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--bg-light) 0%, rgba(99, 102, 241, 0.05) 100%);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.03), transparent);
+    animation: shine 8s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0%, 100% { transform: translateX(100%) rotate(45deg); }
+    50% { transform: translateX(-100%) rotate(45deg); }
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.025em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-section p {
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-dark);
+  }
+
+  .btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin: 0 auto;
+    display: block;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-image:hover {
+    transform: scale(1.02);
+  }
+
+  /* Features Section */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 5rem 0;
+  }
+
+  .feature-card {
+    background: var(--bg-white);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--border-color);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+  }
+
+  .feature-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--text-dark);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* User Welcome Section */
+  .user-section {
+    display: none;
+    background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .user-section.show {
+    display: block;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .nav-toggle {
+      display: block;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      margin: 0;
+    }
+    
+    .nav-container {
+      padding: 1rem;
+    }
+    
+    header {
+      padding: 3rem 1rem 1.5rem;
+    }
+    
+    article {
+      padding: 3rem 1rem;
+    }
+    
+    .hero-section {
+      padding: 2rem 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .hero-image {
+      height: 300px;
+    }
+    
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    
+    .feature-card {
+      padding: 2rem 1rem;
+      margin: 0 auto;
+      max-width: 400px;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-container {
+      padding: 0.75rem;
+    }
+    
+    header {
+      padding: 2rem 1rem 1rem;
+    }
+    
+    article {
+      padding: 2rem 1rem;
+    }
+    
+    .hero-section {
+      padding: 1.5rem 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-image {
+      height: 250px;
+    }
+    
+    .feature-card {
+      padding: 1.5rem 1rem;
+    }
+    
+    footer {
+      padding: 2rem 1rem;
+    }
+  }
+
+  /* Loading animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .feature-card {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .feature-card:nth-child(1) { animation-delay: 0.1s; }
+  .feature-card:nth-child(2) { animation-delay: 0.2s; }
+  .feature-card:nth-child(3) { animation-delay: 0.3s; }
+  .feature-card:nth-child(4) { animation-delay: 0.4s; }
+  .feature-card:nth-child(5) { animation-delay: 0.5s; }
+  .feature-card:nth-child(6) { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>MAYOKUN STORES LIMITED</h1>
+    <p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+  </header>
+
+  <nav class="topnav">
+    <div class="nav-container">
+      <a href="home.html" class="brand">🏪 MAYOKUN STORES</a>
+      <button class="nav-toggle" onclick="toggleDrawer()">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="home.html" class="active">🏠 HOME</a></li>
+        <li><a href="about.html">ℹ️ ABOUT</a></li>
+        <li><a href="product.html">🛍️ PRODUCTS</a></li>
+        <li><a href="service.html">🔧 SERVICES</a></li>
+        <li><a href="gallery.html">🖼️ GALLERY</a></li>
+        <li><a href="register.html">📝 REGISTER</a></li>
+        <li><a href="login.html" id="loginLink">🔐 LOGIN</a></li>
+        <li><a href="#" id="logoutLink" style="display: none;" onclick="logout()">🚪 LOGOUT</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="drawer" id="drawerMenu">
+    <div class="drawer-header">
+      <h3>🏪 MAYOKUN STORES</h3>
+      <p>Premium Shopping Experience</p>
+    </div>
+    <ul>
+      <li><a href="home.html" class="active">🏠 HOME</a></li>
+      <li><a href="about.html">ℹ️ ABOUT</a></li>
+      <li><a href="product.html">🛍️ PRODUCTS</a></li>
+      <li><a href="service.html">🔧 SERVICES</a></li>
+      <li><a href="gallery.html">🖼️ GALLERY</a></li>
+      <li><a href="register.html">📝 REGISTER</a></li>
+      <li><a href="login.html" id="drawerLoginLink">🔐 LOGIN</a></li>
+      <li><a href="#" id="drawerLogoutLink" style="display: none;" onclick="logout()">🚪 LOGOUT</a></li>
+    </ul>
+  </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer()"></div>
+
+  <div class="user-section" id="userWelcome">
+    <span>👋 Welcome back, <span id="userName"></span>!</span>
+  </div>
+
+  <article>
+    <div class="hero-section">
+      <h1>Welcome to Mayokun Stores</h1>
+      <p>Your premier destination for quality products and exceptional service. Shop easy, pay easy, and experience the difference that comes with choosing Nigeria's trusted retail partner.</p>
+      
+      <div class="cta-buttons">
+        <a href="product.html" class="btn btn-primary">🛍️ Shop Now</a>
+        <a href="register.html" class="btn btn-secondary">📝 Join Us Today</a>
+      </div>
+      
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+      alt="Modern retail store interior with premium shopping experience" class="hero-image">
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💄</div>
+        <h3>Premium Beauty Products</h3>
+        <p>Discover our exclusive collection of Oriflame cosmetics and beauty essentials, carefully curated for the modern Nigerian woman.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🏪</div>
+        <h3>Quality Provisions</h3>
+        <p>From household essentials to daily necessities, we stock everything you need under one roof with guaranteed freshness.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🚚</div>
+        <h3>Home Delivery</h3>
+        <p>Enjoy convenient doorstep delivery across Ilorin and surrounding areas. Fast, reliable, and secure delivery service.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">💳</div>
+        <h3>Secure Payment</h3>
+        <p>Multiple payment options including cash, card, and mobile transfer. Your transactions are always safe and secure.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🎁</div>
+        <h3>Member Benefits</h3>
+        <p>Join our loyalty program and enjoy up to 23% discount on all purchases, exclusive offers, and priority customer service.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>Trusted Quality</h3>
+        <p>We partner with reputable brands and suppliers to ensure every product meets our high standards of quality and authenticity.</p>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+  </footer>
+</div>
+
+<script>
+  function toggleDrawer() {
+    const drawer = document.getElementById('drawerMenu');
+    const backdrop = document.getElementById('drawerBackdrop');
+    const hamburger = document.querySelector('.hamburger');
+    const body = document.body;
+    
+    const isOpen = drawer.classList.contains('open');
+    
+    if (isOpen) {
+      drawer.classList.remove('open');
+      backdrop.style.display = 'none';
+      body.style.overflow = '';
+      hamburger.style.transform = '';
+    } else {
+      drawer.classList.add('open');
+      backdrop.style.display = 'block';
+      body.style.overflow = 'hidden';
+      hamburger.style.transform = 'rotate(90deg)';
+    }
+  }
+
+  // Check authentication status on page load
+  function checkAuthStatus() {
+    const token = localStorage.getItem('userToken');
+    const userData = localStorage.getItem('userData');
+    
+    if (token && userData) {
+      try {
+        const user = JSON.parse(userData);
+        showLoggedInState(user);
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        clearAuthData();
+      }
+    } else {
+      showLoggedOutState();
+    }
+  }
+
+  function showLoggedInState(user) {
+    // Hide login links, show logout links
+    document.getElementById('loginLink').style.display = 'none';
+    document.getElementById('logoutLink').style.display = 'block';
+    document.getElementById('drawerLoginLink').style.display = 'none';
+    document.getElementById('drawerLogoutLink').style.display = 'block';
+    
+    // Show welcome message
+    document.getElementById('userWelcome').classList.add('show');
+    document.getElementById('userName').textContent = user.full_name || user.email;
+    
+    // Update CTA buttons for logged-in users
+    const ctaButtons = document.querySelector('.cta-buttons');
+    if (ctaButtons) {
+      ctaButtons.innerHTML = `
+        <a href="product.html" class="btn btn-primary">🛍️ Shop Now</a>
+        <a href="payment.html" class="btn btn-secondary">💳 My Orders</a>
+      `;
+    }
+  }
+
+  function showLoggedOutState() {
+    // Show login links, hide logout links
+    document.getElementById('loginLink').style.display = 'block';
+    document.getElementById('logoutLink').style.display = 'none';
+    document.getElementById('drawerLoginLink').style.display = 'block';
+    document.getElementById('drawerLogoutLink').style.display = 'none';
+    
+    // Hide welcome message
+    document.getElementById('userWelcome').classList.remove('show');
+  }
+
+  function clearAuthData() {
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userData');
+    showLoggedOutState();
+  }
+
+  function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+      clearAuthData();
+      alert('You have been logged out successfully.');
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    checkAuthStatus();
+    
+    // Close drawer when clicking on a link
+    const drawerLinks = document.querySelectorAll('.drawer a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (!link.onclick) toggleDrawer();
+      });
+    });
+    
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Intersection Observer for animations
+    const observeElements = document.querySelectorAll('.feature-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    observeElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  });
+  
+  // Close drawer on window resize if screen gets larger
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 900) {
+      const drawer = document.getElementById('drawerMenu');
+      const backdrop = document.getElementById('drawerBackdrop');
+      const hamburger = document.querySelector('.hamburger');
+      
+      drawer.classList.remove('open');
+      backdrop.style.display = 'none';
+      document.body.style.overflow = '';
+      hamburger.style.transform = '';
+    }
+  });
+</script>
+</body>
+</html>

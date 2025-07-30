@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mayokun Stores Limited - Premium Shopping Experience</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mayokun Stores - Your trusted partner for quality products and exceptional service">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100vh;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite linear;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Modern Top Navigation */
+  .topnav {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+
+  .brand {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .hamburger {
+    width: 28px;
+    height: 3px;
+    background: white;
+    display: block;
+    position: relative;
+    transition: 0.3s;
+    border-radius: 2px;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  .hamburger::before { top: -9px; }
+  .hamburger::after { top: 9px; }
+
+  /* Mobile Drawer */
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease;
+    z-index: 2000;
+    padding: 2rem 0;
+  }
+
+  .drawer.open {
+    left: 0;
+  }
+
+  .drawer-header {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+  }
+
+  .drawer-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .drawer-header p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .drawer ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    transition: background 0.2s;
+    border-left: 4px solid transparent;
+  }
+
+  .drawer ul li a:hover,
+  .drawer ul li a.active {
+    background: rgba(52, 152, 219, 0.2);
+    border-left-color: #3498db;
+  }
+
+  .drawer-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+  }
+
+  .drawer.open ~ .drawer-backdrop {
+    display: block;
+  }
+
+  article {
+    padding: 3rem;
+    background: white;
+    min-height: calc(100vh - 200px);
+  }
+
+  footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .nav-toggle {
+      display: block;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      margin: 0;
+      border-radius: 0;
+    }
+    
+    .nav-container {
+      padding: 1rem;
+    }
+    
+    header {
+      padding: 2rem 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    header p {
+      font-size: 1rem;
+    }
+    
+    article {
+      padding: 2rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 1.7rem;
+    }
+    
+    header p {
+      font-size: 0.9rem;
+    }
+    
+    article {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>MAYOKUN STORES LIMITED</h1>
+    <p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+  </header>
+
+  <nav class="topnav">
+    <div class="nav-container">
+      <a href="home.html" class="brand">🏪 MAYOKUN STORES</a>
+      <button class="nav-toggle" onclick="toggleDrawer()">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="home.html" class="active">🏠 HOME</a></li>
+        <li><a href="about.html">ℹ️ ABOUT</a></li>
+        <li><a href="product.html">🛍️ PRODUCTS</a></li>
+        <li><a href="service.html">🔧 SERVICES</a></li>
+        <li><a href="gallery.html">🖼️ GALLERY</a></li>
+        <li><a href="register.html">📝 REGISTER</a></li>
+        <li><a href="login.html">🔐 LOGIN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="drawer" id="drawerMenu">
+    <div class="drawer-header">
+      <h3>🏪 MAYOKUN STORES</h3>
+      <p>Premium Shopping Experience</p>
+    </div>
+    <ul>
+      <li><a href="home.html" class="active">🏠 HOME</a></li>
+      <li><a href="about.html">ℹ️ ABOUT</a></li>
+      <li><a href="product.html">🛍️ PRODUCTS</a></li>
+      <li><a href="service.html">🔧 SERVICES</a></li>
+      <li><a href="gallery.html">🖼️ GALLERY</a></li>
+      <li><a href="register.html">📝 REGISTER</a></li>
+      <li><a href="login.html">🔐 LOGIN</a></li>
+    </ul>
+  </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer()"></div>
+
+  <article>
+    <!-- PAGE CONTENT GOES HERE -->
+    <div class="page-intro">
+      <h1>🏠 Welcome to Mayokun Stores</h1>
+      <p>Your premier destination for quality products and exceptional service.</p>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
+  </footer>
+</div>
+
+<script>
+  function toggleDrawer() {
+    const drawer = document.getElementById('drawerMenu');
+    const backdrop = document.getElementById('drawerBackdrop');
+    const isOpen = drawer.classList.contains('open');
+    
+    if (isOpen) {
+      drawer.classList.remove('open');
+      backdrop.style.display = 'none';
+      document.body.style.overflow = '';
+    } else {
+      drawer.classList.add('open');
+      backdrop.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  // Close drawer when clicking on a link
+  document.addEventListener('DOMContentLoaded', function() {
+    const drawerLinks = document.querySelectorAll('.drawer a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', toggleDrawer);
+    });
+  });
+  
+  // Close drawer on window resize if screen gets larger
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 900) {
+      const drawer = document.getElementById('drawerMenu');
+      const backdrop = document.getElementById('drawerBackdrop');
+      drawer.classList.remove('open');
+      backdrop.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>

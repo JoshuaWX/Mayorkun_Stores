@@ -547,204 +547,6 @@
     .feature-card p {
       font-size: 0.85rem;
     }
-
-     /* Reviews Section */
-  .reviews-section {
-    margin: 4rem auto 0 auto;
-    max-width: 1100px;
-    padding: 2.5rem 1rem 3.5rem 1rem;
-    background: rgba(255,255,255,0.15);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(52, 152, 219, 0.08);
-    backdrop-filter: blur(8px);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .reviews-section h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    background: linear-gradient(90deg, #8b5cf6, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-    margin: 0 auto;
-    max-width: 1000px;
-  }
-  .review-card {
-    background: rgba(255,255,255,0.22);
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(139,92,246,0.08);
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    min-height: 220px;
-    border: 1px solid rgba(139,92,246,0.08);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .review-card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 8px 32px rgba(139,92,246,0.18);
-  }
-  .review-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    border: 2px solid #8b5cf6;
-    background: #fff;
-  }
-  .review-name {
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 0.2rem;
-    font-size: 1.1rem;
-  }
-  .review-stars {
-    color: #fbbf24;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-  .review-text {
-    color: #333;
-    font-size: 1rem;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-  }
-  .review-date {
-    color: #888;
-    font-size: 0.85rem;
-  }
-
-  /* Modern Footer */
-  footer.modern-footer {
-    background: linear-gradient(90deg, #8b5cf6 0%, #06b6d4 100%);
-    color: #fff;
-    text-align: center;
-    padding: 3rem 1rem 2rem 1rem;
-    font-size: 1.1rem;
-    border-radius: 24px 24px 0 0;
-    margin: 4rem 2rem 0 2rem;
-    box-shadow: 0 4px 32px rgba(139,92,246,0.08);
-    position: relative;
-    overflow: hidden;
-  }
-  footer.modern-footer .footer-brand {
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    margin-bottom: 0.5rem;
-    display: block;
-    background: linear-gradient(90deg, #fff, #e0e7ff 60%, #06b6d4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  footer.modern-footer .footer-links {
-    margin: 1.5rem 0 1rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-  }
-  footer.modern-footer .footer-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    opacity: 0.85;
-    transition: opacity 0.2s;
-  }
-  footer.modern-footer .footer-links a:hover {
-    opacity: 1;
-    text-decoration: underline;
-  }
-  footer.modern-footer .footer-copy {
-    margin-top: 1.5rem;
-    font-size: 0.98rem;
-    color: #e0e7ff;
-    opacity: 0.8;
-  }
-
-  /* Hero Header Animation */
-  .modern-hero-header {
-    background: transparent;
-    position: relative;
-    text-align: center;
-    padding: 0;
-    margin-bottom: 0;
-    min-height: 340px;
-    overflow: visible;
-  }
-  .hero-bg-anim {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 1;
-    background: radial-gradient(circle at 60% 40%, #8b5cf6 0%, transparent 60%),
-                radial-gradient(circle at 30% 80%, #06b6d4 0%, transparent 70%),
-                radial-gradient(circle at 80% 20%, #f093fb 0%, transparent 70%);
-    opacity: 0.18;
-    filter: blur(8px);
-    pointer-events: none;
-    animation: heroBgMove 16s linear infinite alternate;
-  }
-  @keyframes heroBgMove {
-    0% { background-position: 60% 40%, 30% 80%, 80% 20%; }
-    100% { background-position: 50% 60%, 40% 70%, 70% 30%; }
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 4.5rem 1rem 2.5rem 1rem;
-    max-width: 700px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .hero-content h1 {
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
-    font-weight: 900;
-    margin-bottom: 1rem;
-    letter-spacing: -0.03em;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: none;
-    -webkit-text-fill-color: unset;
-  }
-  .gradient-text {
-    background: linear-gradient(90deg, #8b5cf6 0%, #06b6d4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-content .emoji {
-    font-size: 2.2rem;
-    filter: drop-shadow(0 2px 8px #8b5cf6aa);
-  }
-  .hero-lead {
-    font-size: 1.25rem;
-    color: #e0e7ff;
-    margin-bottom: 1.2rem;
-    font-weight: 500;
-    text-shadow: 0 2px 8px #8b5cf622;
-  }
-  .hero-location {
-    color: #b3b3b3;
-    font-size: 1.05rem;
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-  }
-
   }
 </style>
     
@@ -752,140 +554,84 @@
   <body>
  
 <div class="container">
-  <header class="modern-hero-header">
-    <div class="hero-bg-anim"></div>
-    <div class="hero-content">
-      <h1>
-        <span class="emoji">🛒</span>
-        <span class="gradient-text">Mayokun Stores</span>
-        <span class="emoji">✨</span>
-      </h1>
-      <p class="hero-lead">Premium Shopping Experience in Ilorin &mdash; Quality, Convenience, and Care for Every Customer.</p>
-      <div class="hero-location">
-        <span>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State</span> &nbsp;|&nbsp; <span>📞 08038323369</span>
-      </div>
-    </div>
-  </header>
+<header>
+	<h1>MAYOKUN STORES LIMITED</h1>
+	<p>📍 Offa garage, off Ajase Ipo road, Ilorin, Kwara State | 📞 08038323369</p>
+</header>
 
- 
 <div class="main-content">
-    <nav>
-      <ul>
+		<nav>
+			<ul>
         <li><a href="home.html">🏠 HOME</a></li>
-        <li><a href="about.html">ℹ️ ABOUT US</a></li>
-        <li><a href="product.html">🛍️ PRODUCTS</a></li>
-        <li><a href="service.html">🔧 SERVICES</a></li>
+				<li><a href="about.html">ℹ️ ABOUT US</a></li>
+				<li><a href="product.html">🛍️ PRODUCTS</a></li>
+				<li><a href="service.html">🔧 SERVICES</a></li>
         <li><a href="gallery.html">🖼️ GALLERY</a></li>
         <li><a href="register.html">📝 REGISTER</a></li>
         <li><a href="login.html" id="loginLink">🔐 LOGIN</a></li>
         <li><a href="#" id="logoutLink" style="display: none;" onclick="logout()">🚪 LOGOUT</a></li>
-      </ul>
-      <div id="userWelcome" style="display: none; padding: 1rem 2rem; color: white; text-align: center; border-top: 1px solid rgba(255,255,255,0.2);">
-        <span>👋 Welcome, <span id="userName"></span>!</span>
-      </div>
-    </nav>
+			</ul>
+			<div id="userWelcome" style="display: none; padding: 1rem 2rem; color: white; text-align: center; border-top: 1px solid rgba(255,255,255,0.2);">
+				<span>👋 Welcome, <span id="userName"></span>!</span>
+			</div>
+		</nav>
                 
-    <article>
-      <div class="hero-section">
-        <h1>Welcome to Mayokun Stores</h1>
-        <p>Your premier destination for quality products and exceptional service. Shop easy, pay easy, and experience the difference that comes with choosing Nigeria's trusted retail partner.</p>
-        
-        <div class="cta-buttons">
-          <a href="product.html" class="cta-button cta-primary">🛍️ Shop Now</a>
-          <a href="register.html" class="cta-button cta-secondary">📝 Join Us Today</a>
-        </div>
-        
-        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
-        alt="Modern retail store interior with premium shopping experience" class="hero-image">
-      </div>
+		<article>
+			<div class="hero-section">
+				<h1>Welcome to Mayokun Stores</h1>
+				<p>Your premier destination for quality products and exceptional service. Shop easy, pay easy, and experience the difference that comes with choosing Nigeria's trusted retail partner.</p>
+				
+				<div class="cta-buttons">
+					<a href="product.html" class="cta-button cta-primary">🛍️ Shop Now</a>
+					<a href="register.html" class="cta-button cta-secondary">📝 Join Us Today</a>
+				</div>
+				
+				<img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+				alt="Modern retail store interior with premium shopping experience" class="hero-image">
+			</div>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">💄</div>
-          <h3>Premium Beauty Products</h3>
-          <p>Discover our exclusive collection of Oriflame cosmetics and beauty essentials, carefully curated for the modern Nigerian woman.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🏪</div>
-          <h3>Quality Provisions</h3>
-          <p>From household essentials to daily necessities, we stock everything you need under one roof with guaranteed freshness.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🚚</div>
-          <h3>Home Delivery</h3>
-          <p>Enjoy convenient doorstep delivery across Ilorin and surrounding areas. Fast, reliable, and secure delivery service.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">💳</div>
-          <h3>Secure Payment</h3>
-          <p>Multiple payment options including cash, card, and mobile transfer. Your transactions are always safe and secure.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🎁</div>
-          <h3>Member Benefits</h3>
-          <p>Join our loyalty program and enjoy up to 23% discount on all purchases, exclusive offers, and priority customer service.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">⭐</div>
-          <h3>Trusted Quality</h3>
-          <p>We partner with reputable brands and suppliers to ensure every product meets our high standards of quality and authenticity.</p>
-        </div>
-      </div>
-    </article>
+			<div class="features-grid">
+				<div class="feature-card">
+					<div class="feature-icon">💄</div>
+					<h3>Premium Beauty Products</h3>
+					<p>Discover our exclusive collection of Oriflame cosmetics and beauty essentials, carefully curated for the modern Nigerian woman.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">🏪</div>
+					<h3>Quality Provisions</h3>
+					<p>From household essentials to daily necessities, we stock everything you need under one roof with guaranteed freshness.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">🚚</div>
+					<h3>Home Delivery</h3>
+					<p>Enjoy convenient doorstep delivery across Ilorin and surrounding areas. Fast, reliable, and secure delivery service.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">💳</div>
+					<h3>Secure Payment</h3>
+					<p>Multiple payment options including cash, card, and mobile transfer. Your transactions are always safe and secure.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">🎁</div>
+					<h3>Member Benefits</h3>
+					<p>Join our loyalty program and enjoy up to 23% discount on all purchases, exclusive offers, and priority customer service.</p>
+				</div>
+				
+				<div class="feature-card">
+					<div class="feature-icon">⭐</div>
+					<h3>Trusted Quality</h3>
+					<p>We partner with reputable brands and suppliers to ensure every product meets our high standards of quality and authenticity.</p>
+				</div>
+			</div>
+		</article>
 </div>           
 
-<section class="reviews-section">
-  <h2>What Our Customers Say</h2>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <img class="review-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer A">
-      <div class="review-name">Aisha Bello</div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">“Mayokun Stores made my shopping so easy! Fast delivery and great customer service.”</div>
-      <div class="review-date">June 2025</div>
-    </div>
-    <div class="review-card">
-      <img class="review-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer B">
-      <div class="review-name">Chinedu Okafor</div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">“Excellent product quality and the online payment was super smooth. Highly recommend!”</div>
-      <div class="review-date">May 2025</div>
-    </div>
-    <div class="review-card">
-      <img class="review-avatar" src="https://randomuser.me/api/portraits/women/45.jpg" alt="Customer C">
-      <div class="review-name">Fatima Sanni</div>
-      <div class="review-stars">★★★★☆</div>
-      <div class="review-text">“I love the member discounts and the support team is always helpful.”</div>
-      <div class="review-date">April 2025</div>
-    </div>
-    <div class="review-card">
-      <img class="review-avatar" src="https://randomuser.me/api/portraits/men/76.jpg" alt="Customer D">
-      <div class="review-name">Tunde Lawal</div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">“Best shopping experience in Ilorin. Will definitely shop again!”</div>
-      <div class="review-date">March 2025</div>
-    </div>
-  </div>
-</section>
-
-<footer class="modern-footer">
-  <span class="footer-brand">🏪 Mayokun Stores</span>
-  <div class="footer-links">
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="product.html">Products</a>
-    <a href="service.html">Services</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="register.html">Register</a>
-    <a href="login.html">Login</a>
-    <a href="payment.html">Payment</a>
-  </div>
-  <div class="footer-copy">© 2025 Mayokun Stores Limited &mdash; Proudly Serving Kwara State</div>
+<footer>
+	<p>© 2025 Mayokun Stores Limited | All Rights Reserved | Proudly Serving Kwara State</p>
 </footer>
 </div>
 
